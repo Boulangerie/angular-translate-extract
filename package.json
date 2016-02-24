@@ -1,12 +1,8 @@
 {
-  "name": "grunt-angular-translate",
-  "version": "0.3.3",
+  "name": "angular-translate-extractor",
+  "version": "0.0.1",
   "description": "Extract all the translation keys for angular-translate project",
-  "main": "Gruntfile.js",
-  "directories": {
-    "doc": "docs",
-    "test": "test"
-  },
+  "main": "./lib/index.js",
   "scripts": {
     "test": "grunt test"
   },
@@ -28,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/angular-translate/grunt-angular-translate.git"
+    "url": "git://github.com/Boulangerie/angular-translate-extractor.git"
   },
   "keywords": [
     "AngularJS",
@@ -42,20 +38,21 @@
   ],
   "author": "Benjamin Longearet",
   "bugs": {
-    "url": "https://github.com/angular-translate/grunt-angular-translate/issues"
+    "url": "https://github.com/Boulangerie/angular-translate-extractor/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/angular-translate/grunt-angular-translate/blob/master/LICENSEgit "
+      "url": "https://github.com/Boulangerie/angular-translate-extractor/blob/master/LICENSE"
     }
   ],
-  "gitHead": "dd655f85e3b4c59b7f3ac5ebf3f1ccad69876bb8",
   "readmeFilename": "README.md",
   "dependencies": {
     "flat": "^1.2.0",
+    "glob-expand": "0.1.0",
     "json-stable-stringify": "^1.0.0",
     "lodash": "~2.4.1",
+    "log": "1.4.0",
     "pofile": "^0.2.12"
   }
 }

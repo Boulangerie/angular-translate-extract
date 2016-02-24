@@ -1,8 +1,22 @@
 'use strict';
 
 var grunt = require('grunt');
+var _ = require('lodash');
+var path = require('path');
+var extractor = require('../lib/index.js')
+
+var i18nextract_config = require('./angular-translate-extractor.conf');
 
 exports.i18nextract = {
+
+  setUp: function (callback) {
+    _.forEach(i18nextract_config, function(v, k) {
+      extractor.proceed(v, {
+        basePath: path.resolve('./')
+      })
+    })
+    callback();
+  },
 
   default_options: function(test) {
     test.expect(1);

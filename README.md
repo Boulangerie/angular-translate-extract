@@ -1,6 +1,4 @@
-# grunt-angular-translate
-
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-translate/grunt-angular-translate?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# angular-translate-extractor
 
 Task that extracts all the translation keys for angular-translate
 project. It searches all view, and js scripts to find
@@ -18,27 +16,31 @@ each local defined in Gruntfile separate json is created:
     }
 
 Translation should be provided in the created files. On the next run,
-`grunt-angular-translate` will not change keys already translated.
+`Boulangerie/angular-translate-extractor` will not change keys already translated.
 It will only add keys that were added to the source and remove the
 ones that are not present anymore in the source.
 
 
 ##Status
 
-[![NPM](https://nodei.co/npm/grunt-angular-translate.png)](https://nodei.co/npm/grunt-angular-translate/)
+[![NPM](https://nodei.co/npm/angular-translate-extractor.png)](https://nodei.co/npm/angular-translate-extractor/)
 
 ## Getting Started
-Install this grunt plugin next to your project. Require [gruntJS][getting_started].
+Install this node package next to your project.
 
-Use `npm install grunt-angular-translate`
+Use `npm install -D angular-translate-extractor`
 
-Then add this line to your project's `Gruntfile.js` file:
-
-`grunt.loadNpmTasks('grunt-angular-translate');`
-
-grunt-angular-translate provide to your grunt environment a task called i18nextract which need a configuration to rocks (Please read the documentation).
+angular-translate-extractor provide a `proceed` method to start the extraction.
 
 This extraction is made to work with the [angular-translate][angular_translate] project created by [Pascal Precht][pascalPrecht]
+
+## Grunt & Gulp integration
+
+WIP
+
+[grunt-angular-translate](https://github.com/Boulangerie/grunt-angular-translate)
+
+[gulp-angular-translate](https://github.com/Boulangerie/gulp-angular-translate)
 
 ## Use cases
 
@@ -72,21 +74,14 @@ This extraction is made to work with the [angular-translate][angular_translate] 
 
 `$translate(['TRANSLATION', 'TRANSLATION_1'])`
 
+#### Ternary operators
+
+`{{ myVar ? 'KEY_ONE' : 'KEY_TWO' }}`
+`{{ myVar ? "KEY_ONE" : "KEY_TWO" }}`_
+`{{ myVar ? "KEY_ONE" : "KEY_TWO" | translate }}`_
+`myVar ? "KEY_ONE" : "KEY_TWO"`_
+
 ## Configuration
-
-Simple configuration for `i18nextract` task
-
-```
-i18nextract: {
-  default_options: {
-    src: [ 'src/**/*.js', 'src/**/*.html' ],
-    lang:     ['fr_FR'],
-    dest:     'tmp'
-  }
-}
-```
-
-More examples in [Gruntfile.js](https://github.com/angular-translate/grunt-angular-translate/blob/master/Gruntfile.js)
 
 ### Options
 
@@ -260,6 +255,8 @@ You will find the tests files into `test` directory.
 
 To run test use `grunt test`
 
+All testing files following this pattern: `./test/*_test.js`
+
 __to improve ... :-D__
 
 ## Contributing
@@ -280,4 +277,4 @@ Licensed under the MIT license.
 [angular_translate]: https://github.com/PascalPrecht/angular-translate
 [pascalPrecht]: https://github.com/PascalPrecht
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/882c3bab5f5b2d7c63f79337a9a3688a "githalytics.com")](http://githalytics.com/firehist/grunt-angular-translate)
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/882c3bab5f5b2d7c63f79337a9a3688a "githalytics.com")](http://githalytics.com/Boulangerye/angular-translate-extractor)
