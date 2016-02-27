@@ -1,13 +1,11 @@
-# angular-translate-extractor
+# angular-translate-extract
 
-Task that extracts all the translation keys for angular-translate
-project. It searches all view, and js scripts to find
-`angular-translate` calls; such as:
+This node package aims to extract all the translation keys for angular-translate project. It searches in given folder to extract key + default translation if exists. eg:
 
 * `{{'KEY_IN_VIEW' | translate }}`
 * `$translate.instant('KEY_IN_SCRIPT')`
 
-Each found key is then extracted to json files with translations. For
+Each found key is then extracted to json or po files with translations. For
 each local defined in Gruntfile separate json is created:
 
     {
@@ -15,28 +13,42 @@ each local defined in Gruntfile separate json is created:
       "KEY_IN_SCRIPT": ""
     }
 
+or
+
+    msgid ""
+    msgstr ""
+    "Content-Type: text/plain; charset=UTF-8\n"
+    "Content-Transfer-Encoding: 8bit\n"
+    "Project-Id-Version: \n"
+
+    msgctxt ""
+    msgid "all.tato.tati"
+    msgstr ""
+
 Translation should be provided in the created files. On the next run,
-`Boulangerie/angular-translate-extractor` will not change keys already translated.
+`Boulangerie/angular-translate-extract` will not change keys already translated.
 It will only add keys that were added to the source and remove the
 ones that are not present anymore in the source.
 
 
 ##Status
 
-[![NPM](https://nodei.co/npm/angular-translate-extractor.png)](https://nodei.co/npm/angular-translate-extractor/)
+[![NPM](https://nodei.co/npm/angular-translate-extract.png)](https://nodei.co/npm/angular-translate-extract/)
+
+[![NPM Package](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/angular-translate-extract) [![Build Status](https://travis-ci.org/Boulangerie/angular-translate-extract.svg?branch=master)](https://travis-ci.org/Boulangerie/angular-translate-extract)  [![NPM Download](https://img.shields.io/npm/dt/angular-translate-extract.svg)](https://www.npmjs.com/package/angular-translate-extract)
 
 ## Getting Started
 Install this node package next to your project.
 
-Use `npm install -D angular-translate-extractor`
+Use `npm install -D angular-translate-extract`
 
-angular-translate-extractor provide a `proceed` method to start the extraction.
+angular-translate-extract provide an `extract` method to start the extraction.
 
 This extraction is made to work with the [angular-translate][angular_translate] project created by [Pascal Precht][pascalPrecht]
 
 ## Grunt & Gulp integration
 
-WIP
+WIP!
 
 [grunt-angular-translate](https://github.com/Boulangerie/grunt-angular-translate)
 
@@ -257,15 +269,47 @@ To run test use `grunt test`
 
 All testing files following this pattern: `./test/*_test.js`
 
-__to improve ... :-D__
+Testing running with `nodeunit`.
+
+_To be improved... Feel free :D_
 
 ## Contributing
 
-_(Anyone yet)_
+Special thanks to: @SKoschnicke SKoschnicke
 
-## Release History
-
-_(Nothing yet)_
+@AlaaSulimankhazaleh
+@arianerocha arianerocha
+@ClouDesire ClouDesire
+@d42f d42f
+@elhigu elhigu
+@gitter-badger gitter-badger
+@gruntjs-updater gruntjs-updater
+@IFours IFours
+@jdahlbom jdahlbom
+@JeroMiya JeroMiya
+@jplusplus jplusplus
+@jsteenkamp jsteenkamp
+@jtheoof jtheoof
+@laketea laketea
+@marcin-wosinek marcin-wosinek
+@mchambaud mchambaud
+@openheimer openheimer
+@peng-jiesi peng-jiesi
+@phw phw
+@rafallo rafallo
+@realityking realityking
+@rewoo rewoo
+@RobertSasak RobertSasak
+@sclassen sclassen
+@liamlin liamlin
+@orbweb orbweb
+@tamtakoe tamtakoe
+@telpalbrox telpalbrox
+@TiagoLopes92 TiagoLopes92
+@tomteman tomteman
+@tthew tthew
+@twolff-iow twolff-iow
+@wilgert wilgert
 
 ## License
 
@@ -277,4 +321,4 @@ Licensed under the MIT license.
 [angular_translate]: https://github.com/PascalPrecht/angular-translate
 [pascalPrecht]: https://github.com/PascalPrecht
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/882c3bab5f5b2d7c63f79337a9a3688a "githalytics.com")](http://githalytics.com/Boulangerye/angular-translate-extractor)
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/882c3bab5f5b2d7c63f79337a9a3688a "githalytics.com")](http://githalytics.com/Boulangerye/angular-translate-extract)
