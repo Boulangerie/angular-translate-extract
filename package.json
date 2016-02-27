@@ -2,6 +2,7 @@
   "name": "angular-translate-extract",
   "description": "Extract all the translation keys for angular-translate project",
   "main": "./lib/index.js",
+  "version": "0.0.1",
   "scripts": {
     "test": "grunt test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
