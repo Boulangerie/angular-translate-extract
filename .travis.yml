@@ -5,6 +5,8 @@ cache:
     - node_modules
 notifications:
   email: false
+  webhooks: https://hubot-mill.herokuapp.com/hubot/travis?room=angular-translate
+  on_start: true
 node_js:
   - '4'
 before_install:
