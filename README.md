@@ -1,5 +1,9 @@
 # angular-translate-extract
 
+[![NPM](https://nodei.co/npm/angular-translate-extract.png)](https://nodei.co/npm/angular-translate-extract/)
+
+[![NPM Package](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/angular-translate-extract) [![Build Status](https://travis-ci.org/Boulangerie/angular-translate-extract.svg?branch=master)](https://travis-ci.org/Boulangerie/angular-translate-extract)  [![NPM Download](https://img.shields.io/npm/dt/angular-translate-extract.svg)](https://www.npmjs.com/package/angular-translate-extract)
+
 This node package aims to extract all the translation keys for angular-translate project. It searches in given folder to extract key + default translation if exists. eg:
 
 * `{{'KEY_IN_VIEW' | translate }}`
@@ -29,13 +33,6 @@ Translation should be provided in the created files. On the next run,
 `Boulangerie/angular-translate-extract` will not change keys already translated.
 It will only add keys that were added to the source and remove the
 ones that are not present anymore in the source.
-
-
-##Status
-
-[![NPM](https://nodei.co/npm/angular-translate-extract.png)](https://nodei.co/npm/angular-translate-extract/)
-
-[![NPM Package](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/angular-translate-extract) [![Build Status](https://travis-ci.org/Boulangerie/angular-translate-extract.svg?branch=master)](https://travis-ci.org/Boulangerie/angular-translate-extract)  [![NPM Download](https://img.shields.io/npm/dt/angular-translate-extract.svg)](https://www.npmjs.com/package/angular-translate-extract)
 
 ## Getting Started
 Install this node package next to your project.
