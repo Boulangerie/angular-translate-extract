@@ -5,3 +5,4 @@ tmp
 .idea
 atlassian-ide-plugin.xml
 coverage
+lib
