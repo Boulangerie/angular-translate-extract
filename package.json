@@ -2,7 +2,7 @@
   "name": "angular-translate-extract",
   "description": "Extract all the translation keys for angular-translate project",
   "main": "./lib/index.js",
-  "version": "0.0.1",
+  "version": "0.0.0-semantic-release-auto-version",
   "scripts": {
     "commit": "git cz",
     "test": "mocha tests --recursive -w --compilers js:babel-register",
