@@ -12,8 +12,8 @@ import path from 'path'
 import _ from 'lodash'
 import Log from 'log'
 import pkg from '../package.json'
-import Utils from './utils.js'
-import Translations from './translations.js'
+import {Utils} from './utils.js'
+import {Translations} from './translations.js'
 
 
 var extractor
@@ -25,8 +25,8 @@ var extractor
 
     // Grab NODE_ENV to set debug flag!
     var debug = process.env.NODE_ENV === 'debug'
-    _log = new Log(debug ? 'debug' : 'info')
-    _basePath = option ? (option. basePath || __dirname) : __dirname
+    _log = new Log(option.log || (debug ? 'debug' : 'info'))
+    _basePath = option ? (option.basePath || __dirname) : __dirname
     _utils = new Utils({
       basePath: _basePath
     })
@@ -335,7 +335,7 @@ var extractor
     switch(adapter) {
       case 'pot':
         var PotAdapter = require('./adapter/pot-adapter.js')
-        var toPot = new PotAdapter(_log, _basePath)
+        var toPot = new PotAdapter.PotAdapter(_log, _basePath)
         toPot.init(params)
         _translation.persist(toPot)
         break
@@ -345,6 +345,7 @@ var extractor
         toJson.init(params)
         _translation.persist(toJson)
     }
+
   }
 
   module.exports = {

@@ -21,7 +21,7 @@
   function JsonAdapter(log, basePath) {
     _log = log
     _basePath = basePath
-    _utils = new Utils({
+    _utils = new Utils.Utils({
       basePath: _basePath
     })
   }
@@ -70,7 +70,7 @@
         _log.debug('Create file: ' + destFilename + (isDefaultLang ? ' (' + lang + ' is the default language)' : ''))
       }
 
-      translations = _translation.getMergedTranslations(Translations.flatten(json), isDefaultLang)
+      translations = _translation.getMergedTranslations(Translations.Translations.flatten(json), isDefaultLang)
 
       var stats = _translation.getStats()
       var statEmptyType = _translation.params.nullEmpty ? "null" : "empty"

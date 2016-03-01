@@ -78,10 +78,16 @@ msgstr "${_msg}"`
       expect(potAdapter.params).to.deep.equal(paramsOne)
     })
     it('should write the pot file', () => {
-      potAdapter.persist({
-        "MY.TRANSLATION": 'MY.TRANSLATION',
-        "MY.OTHER_TRANSLATION": 'Hello!'
-      })
+      // Need to mock quickly Translations
+      var fakeTranslations = {
+        getFlatTranslations: () => {
+          return {
+            "MY.TRANSLATION": 'MY.TRANSLATION',
+            "MY.OTHER_TRANSLATION": 'Hello!'
+          }
+        }
+      }
+      potAdapter.persist(fakeTranslations)
       let filepath = path.resolve(_basePath, potAdapter.params.dest, potAdapter.params.prefix + potAdapter.params.suffix)
       let result
       try {
@@ -98,8 +104,8 @@ msgstr ""
 "Project-Id-Version: \\n"
 
 msgctxt ""
-msgid "Hello!"
-msgstr ""
+msgid "MY.OTHER_TRANSLATION"
+msgstr "Hello!"
 
 msgctxt ""
 msgid "MY.TRANSLATION"

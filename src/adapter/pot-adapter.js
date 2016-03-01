@@ -50,8 +50,8 @@ export class PotAdapter {
       'Project-Id-Version': ''
     }
 
-    _.forEach(translations, (msg) => {
-      catalog.items.push(new PotObject(msg, translations[msg]))
+    _.forEach(translations.getFlatTranslations(), (value, msg) => {
+      catalog.items.push(new PotObject(msg, value))
     })
 
     catalog.items.sort(function(a, b) {
