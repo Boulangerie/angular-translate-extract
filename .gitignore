@@ -4,3 +4,4 @@ tmp
 !.empty
 .idea
 atlassian-ide-plugin.xml
+coverage
