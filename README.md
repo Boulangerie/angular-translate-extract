@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/angular-translate-extract.png)](https://nodei.co/npm/angular-translate-extract/)
 
-[![NPM Package](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/angular-translate-extract) [![Build Status](https://travis-ci.org/Boulangerie/angular-translate-extract.svg?branch=master)](https://travis-ci.org/Boulangerie/angular-translate-extract)  [![NPM Download](https://img.shields.io/npm/dt/angular-translate-extract.svg)](https://www.npmjs.com/package/angular-translate-extract)
+[![NPM Package](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/angular-translate-extract) [![Build Status](https://travis-ci.org/Boulangerie/angular-translate-extract.svg?branch=master)](https://travis-ci.org/Boulangerie/angular-translate-extract)  [![codecov.io](https://codecov.io/github/codecov/codecov-ruby/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-ruby?branch=master)  [![NPM Download](https://img.shields.io/npm/dt/angular-translate-extract.svg)](https://www.npmjs.com/package/angular-translate-extract) 
 
 This node package aims to extract all the translation keys for angular-translate project. It searches in given folder to extract key + default translation if exists. eg:
 
