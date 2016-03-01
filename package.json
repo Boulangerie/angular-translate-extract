@@ -4,13 +4,27 @@
   "main": "./lib/index.js",
   "version": "0.0.1",
   "scripts": {
-    "test": "grunt test",
+    "commit": "git cz",
+    "test": "mocha tests --recursive -w --compilers js:babel-register",
+    "test:single": "babel-node node_modules/.bin/babel-istanbul cover _mocha -- tests --recursive -R spec",
+    "check-coverage": "istanbul check-coverage --statements 50 --branches 35 --functions 75 --lines 50",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
+    "prebuild": "rm -Rf lib && mkdir lib",
+    "build": "babel -d lib/ src/",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "engines": {
     "node": ">= 0.8.0"
   },
   "devDependencies": {
+    "babel-cli": "6.5.1",
+    "babel-istanbul": "0.6.0",
+    "babel-preset-es2015": "6.6.0",
+    "babel-register": "6.5.2",
+    "chai": "3.5.0",
+    "codecov.io": "0.1.6",
+    "commitizen": "2.5.0",
+    "cz-conventional-changelog": "1.1.5",
     "grunt": "~0.4.0",
     "grunt-bump": "0.0.13",
     "grunt-contrib-clean": "^0.5.0",
@@ -18,8 +32,11 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-nodeunit": "^0.4.1",
     "grunt-markdox": "^0.1.0",
+    "istanbul": "0.4.2",
+    "mocha": "2.4.5",
     "nodeunit": "^0.9.1",
-    "semantic-release": "^4.3.5"
+    "semantic-release": "^4.3.5",
+    "sinon": "1.17.3"
   },
   "peerDependencies": {
     "grunt": ">=0.4.0"
@@ -53,8 +70,12 @@
     "flat": "^1.2.0",
     "glob-expand": "0.1.0",
     "json-stable-stringify": "^1.0.0",
-    "lodash": "~2.4.1",
+    "lodash": "4.5.1",
+    "lodash-deep": "1.6.0",
     "log": "1.4.0",
     "pofile": "^0.2.12"
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog/"
   }
 }
