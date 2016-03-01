@@ -5,8 +5,8 @@
   "version": "0.0.0-semantic-release-auto-version",
   "scripts": {
     "commit": "git cz",
-    "test": "mocha tests --recursive -w --compilers js:babel-register",
-    "test:single": "babel-node node_modules/.bin/babel-istanbul cover _mocha -- tests --recursive -R spec",
+    "test": "mocha tests -w --compilers js:babel-register",
+    "test:single": "babel-node node_modules/.bin/babel-istanbul cover _mocha -- tests -R spec",
     "check-coverage": "istanbul check-coverage --statements 50 --branches 35 --functions 75 --lines 50",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "prebuild": "rm -Rf lib && mkdir lib",
