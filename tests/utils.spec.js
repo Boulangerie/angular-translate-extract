@@ -37,24 +37,15 @@ describe('Utils', () => {
   })
 
   describe('customStringify()', () => {
-    it('should return a default JSON.stringify(value, null, 4) if no options', () => {
-      var expected = JSON.stringify(JSONObject, null, 4)
-      expect(utils.customStringify(JSONObject)).equals(expected)
-      expect(utils.customStringify(JSONObject, null)).equals(expected)
-      expect(utils.customStringify(JSONObject, undefined)).equals(expected)
-    })
-    it('should use default options if given options is not an object', () => {
-      let defaultOptions = {
-        space: '    ',
-        cmp: function (a, b) {
-          var lower = function (a) {
-            return a.toLowerCase()
-          }
-          return lower(a.key) < lower(b.key) ? -1 : 1
-        }
+    let defaultOptions = {
+      space: '    ',
+      cmp: function (a, b) {
+        return a.key < b.key ? -1 : 1
       }
+    }
 
-      var values = [true, 1, 'string'].forEach((value) => {
+    it('should use default options if given options is not an object or null', () => {
+      [true, 1, 'string'].forEach((value) => {
         expect(utils.customStringify(JSONObject, value)).equals(utils.customStringify(JSONObject, defaultOptions))
       })
     })

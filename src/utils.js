@@ -18,18 +18,12 @@ export class Utils {
    * @returns {*}
    */
   customStringify(value, options) {
-    if (options) {
-      return stringify(value, _.isObject(options) ? options : {
-        space: '    ',
-        cmp: function (a, b) {
-          var lower = function (a) {
-            return a.toLowerCase()
-          }
-          return lower(a.key) < lower(b.key) ? -1 : 1
-        }
-      })
-    }
-    return JSON.stringify(value, null, 4)
+    return stringify(value, _.isObject(options) ? options : {
+      space: '    ',
+      cmp: function (a, b) {
+        return a.key < b.key ? -1 : 1
+      }
+    })
   }
 
   /**
