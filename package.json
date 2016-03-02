@@ -7,14 +7,14 @@
     "commit": "git cz",
     "test": "mocha tests -w --compilers js:babel-register",
     "test:single": "babel-node node_modules/.bin/babel-istanbul cover _mocha -- tests -R spec",
-    "check-coverage": "istanbul check-coverage --statements 50 --branches 35 --functions 75 --lines 50",
+    "check-coverage": "istanbul check-coverage --statements 99 --branches 92 --functions 100 --lines 99",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "prebuild": "rm -Rf lib && mkdir lib",
     "build": "babel -d lib/ src/",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 4.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.5.1",
