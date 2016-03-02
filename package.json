@@ -25,21 +25,11 @@
     "commitizen": "2.5.0",
     "coveralls": "2.11.8",
     "cz-conventional-changelog": "1.1.5",
-    "grunt": "~0.4.0",
-    "grunt-bump": "0.0.13",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-nodeunit": "^0.4.1",
-    "grunt-markdox": "^0.1.0",
     "istanbul": "0.4.2",
     "mocha": "2.4.5",
     "nodeunit": "^0.9.1",
     "semantic-release": "^4.3.5",
     "sinon": "1.17.3"
-  },
-  "peerDependencies": {
-    "grunt": ">=0.4.0"
   },
   "repository": {
     "type": "git",
@@ -48,8 +38,6 @@
   "keywords": [
     "AngularJS",
     "angular-translate",
-    "gruntplugin",
-    "grunt",
     "javascript",
     "js",
     "translate",
