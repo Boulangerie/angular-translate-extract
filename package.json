@@ -7,14 +7,14 @@
     "commit": "git cz",
     "test": "mocha tests -w --compilers js:babel-register",
     "test:single": "babel-node node_modules/.bin/babel-istanbul cover _mocha -- tests -R spec",
-    "check-coverage": "istanbul check-coverage --statements 50 --branches 35 --functions 75 --lines 50",
+    "check-coverage": "istanbul check-coverage --statements 99 --branches 92 --functions 100 --lines 99",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "prebuild": "rm -Rf lib && mkdir lib",
     "build": "babel -d lib/ src/",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 4.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.5.1",
@@ -25,21 +25,11 @@
     "commitizen": "2.5.0",
     "coveralls": "2.11.8",
     "cz-conventional-changelog": "1.1.5",
-    "grunt": "~0.4.0",
-    "grunt-bump": "0.0.13",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-nodeunit": "^0.4.1",
-    "grunt-markdox": "^0.1.0",
     "istanbul": "0.4.2",
     "mocha": "2.4.5",
     "nodeunit": "^0.9.1",
     "semantic-release": "^4.3.5",
     "sinon": "1.17.3"
-  },
-  "peerDependencies": {
-    "grunt": ">=0.4.0"
   },
   "repository": {
     "type": "git",
@@ -48,8 +38,6 @@
   "keywords": [
     "AngularJS",
     "angular-translate",
-    "gruntplugin",
-    "grunt",
     "javascript",
     "js",
     "translate",

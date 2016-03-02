@@ -14,11 +14,13 @@ import Log from 'log'
 import pkg from '../package.json'
 import {Utils} from './utils.js'
 import {Translations} from './translations.js'
+import {PotAdapter} from './adapter/pot-adapter.js'
+import {JsonAdapter} from './adapter/json-adapter.js'
 
 
 var extractor
 (function() {
-  var _basePath, _log, _utils
+  var _log, _utils
 
   var Extractor = function (data, option) {
     this.data = data
@@ -26,9 +28,10 @@ var extractor
     // Grab NODE_ENV to set debug flag!
     var debug = process.env.NODE_ENV === 'debug'
     _log = new Log(option.log || (debug ? 'debug' : 'info'))
-    _basePath = option ? (option.basePath || __dirname) : __dirname
+
+    this.basePath = (option && option.basePath) || __dirname
     _utils = new Utils({
-      basePath: _basePath
+      basePath: this.basePath
     })
 
     // Check lang parameter
@@ -226,37 +229,8 @@ var extractor
     }
 
     /**
-     * Recurse feed translation object (utility for namespace)
-     * INPUT: {"NS1": {"NS2": {"VAL1": "", "VAL2": ""} } }
-     * OUTPUT: {"NS1": {"NS2": {"VAL1": "NS1.NS2.VAL1", "VAL2": "NS1.NS2.VAL2"} } }
-     * @param {Object} data
-     * @param {string?} path
-     * @private
-     */
-    var _recurseFeedDefaultNamespace = function (data, path) {
-      var path = path || ''
-      if (_.isObject(data)) {
-        for (var key in data) {
-          if (_.isObject(data)) {
-            data[ key ] = _recurseFeedDefaultNamespace(data[ key ], path != '' ? path + '.' + key : key)
-          }
-        }
-        return data
-      } else {
-        if (data == null && data == "") {
-          // return default data if empty/null
-          return path
-        } else {
-
-          return data
-        }
-      }
-    }
-
-    /**
      * Start extraction of translations
      */
-
     // Check directory exist
     try {
       fs.statSync(dest)
@@ -334,18 +308,17 @@ var extractor
 
     switch(adapter) {
       case 'pot':
-        var PotAdapter = require('./adapter/pot-adapter.js')
-        var toPot = new PotAdapter.PotAdapter(_log, _basePath)
+        var toPot = new PotAdapter(_log, this.basePath)
         toPot.init(params)
         _translation.persist(toPot)
         break
       default:
-        var JsonAdapter = require('./adapter/json-adapter.js')
-        var toJson = new JsonAdapter(_log, _basePath)
+        var toJson = new JsonAdapter(_log, this.basePath)
         toJson.init(params)
         _translation.persist(toJson)
     }
 
+    return this
   }
 
   module.exports = {

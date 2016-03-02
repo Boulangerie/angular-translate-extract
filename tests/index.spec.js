@@ -8,7 +8,7 @@ import preset from './preset.conf.js'
 import pkg from '../package.json'
 
 describe('Extractor', () => {
-	let extractor
+  let workingDir = path.resolve(__dirname, '..')
 
 	describe('Interface', () => {
 		it('should expose the current version', () => {
@@ -25,8 +25,51 @@ describe('Extractor', () => {
 		})
 	})
 
+  describe('extract()', () => {
+
+    it('should throw an error when no lang in params', () => {
+      let result = true
+      try {
+        AngularTranslateExtractor.extract({}, {
+          "basePath": workingDir,
+          "log": false
+        })
+        result = false
+      } catch (e) {}
+      expect(result).to.be.true
+    })
+
+    it('should run in debug mode', () => {
+      let result = true
+      let oldNodeEnv = process.env.NODE_ENV
+      process.env.NODE_ENV = 'debug'
+      try {
+        AngularTranslateExtractor.extract({
+          lang: ['fr_FR'],
+          dest: 'tmp'
+        }, {
+          "basePath": workingDir,
+          "log": false
+        })
+      } catch(e) {
+        result = false
+      }
+      expect(result).to.be.true
+      process.env.NODE_ENV = oldNodeEnv
+    })
+
+    it('should set default basePath if not given as input', () => {
+      let extractor = AngularTranslateExtractor.extract({
+        lang: ['fr_FR'],
+        dest: 'tmp'
+      }, {"log": false})
+      expect(extractor.basePath).to.be.a('string')
+      expect(extractor.basePath).equals(path.resolve(path.dirname('./src/index.js')))
+    })
+
+  })
+
   describe('Preset', () => {
-    let workingDir = path.resolve(__dirname, '..')
     let getContent = (name, tmpDirectory = 'tmp/', expectedDirectory = 'tests/expected/') => {
       let encoding = {"encoding": 'utf8'}
       let tmp = fs.readFileSync(path.resolve(workingDir, tmpDirectory + name), encoding)

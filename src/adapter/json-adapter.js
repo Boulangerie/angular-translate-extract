@@ -7,50 +7,42 @@
  *
  */
 
-(function() {
-  'use strict'
+import path from 'path'
+import fs from 'fs'
+import Adapter from './adapter'
+import {Utils} from './../utils'
+import {Translations} from './../translations'
 
-  var path = require('path')
-  var fs = require('fs')
-  var Utils = require('./../utils.js')
-  var Translations = require('./../translations.js')
+export class JsonAdapter extends Adapter {
 
-  var _log, _basePath, _utils
-
-
-  function JsonAdapter(log, basePath) {
-    _log = log
-    _basePath = basePath
-    _utils = new Utils.Utils({
-      basePath: _basePath
+  constructor(log, basePath) {
+    super(log, basePath)
+    this.utils = new Utils({
+      "basePath": basePath
     })
+
+    this.params = {
+      lang: [],
+      prefix: '',
+      prefix: '',
+      suffix: '.json',
+      source: '',
+      defaultLang: '.',
+      stringifyOptions: null
+    }
   }
 
-  JsonAdapter.prototype.init = function(params) {
-    this.dest = params.dest
-    this.lang = params.lang
-    this.prefix = params.prefix
-    this.suffix = params.suffix || '.json'
-    this.source = params.source
-    this.defaultLang = params.defaultLang
-    this.stringifyOptions = params.stringifyOptions
+  getDestFilename(language) {
+    return path.resolve(this.basePath, path.join(this.params.dest, this.params.prefix + language + this.params.suffix))
   }
 
-  JsonAdapter.prototype.persist = function(_translation) {
-    var lang = this.lang
-    var dest = this.dest
-    var prefix = this.prefix
-    var suffix = this.suffix
-    var source = this.source || ''
-    var defaultLang = this.defaultLang || '.'
-    var stringify_options = this.stringifyOptions || null
+  persist(translations) {
+    // Build all output language files
+    this.params.lang.forEach((language) => {
 
-      // Build all output language files
-    lang.forEach(function (lang) {
 
-      var destFilename = path.resolve(_basePath, path.join(dest, prefix + lang + suffix)),
-        filename = source,
-        translations = {},
+      let destFilename = this.getDestFilename(language),
+        filename = this.params.source,
         json = {}
 
       // Test source filename
@@ -58,22 +50,22 @@
         filename = destFilename
       }
 
-      _log.info('Process ' + lang + ' : ' + filename)
+      this.log.debug('Process ' + language + ' : ' + filename)
 
-      var isDefaultLang = (defaultLang === lang)
+      var isDefaultLang = (this.params.defaultLang === language)
       try {
         // Test if filename exists
         fs.statSync(filename)
-        _log.debug('File Exists. ' + destFilename)
+        this.log.debug('File Exists. ' + destFilename)
         json = JSON.parse(fs.readFileSync(filename, {encoding: 'utf8'}))
       } catch (e) {
-        _log.debug('Create file: ' + destFilename + (isDefaultLang ? ' (' + lang + ' is the default language)' : ''))
+        this.log.debug('Create file: ' + destFilename + (isDefaultLang ? ' (' + language + ' is the default language)' : ''))
       }
 
-      translations = _translation.getMergedTranslations(Translations.Translations.flatten(json), isDefaultLang)
+      let _translations = translations.getMergedTranslations(Translations.flatten(json), isDefaultLang)
 
-      var stats = _translation.getStats()
-      var statEmptyType = _translation.params.nullEmpty ? "null" : "empty"
+      var stats = translations.getStats()
+      var statEmptyType = translations.params.nullEmpty ? "null" : "empty"
       var statPercentage =  Math.round(stats[statEmptyType] / stats["total"] * 100)
       statPercentage = isNaN(statPercentage) ? 100 : statPercentage
       var statsString = "Statistics : " +
@@ -82,13 +74,12 @@
         " / Deleted: " + stats["deleted"] +
         " / New: " + stats["new"]
 
-      _log.info(statsString)
+      this.log.debug(statsString)
 
-      // Write JSON file for lang
-      fs.writeFileSync(path.resolve(_basePath, destFilename), _utils.customStringify(translations, stringify_options) + '\n')
+      // Write JSON file for language
+      fs.writeFileSync(path.resolve(this.basePath, destFilename), this.utils.customStringify(_translations, this.stringifyOptions) + '\n')
 
     })
   }
 
-  module.exports = JsonAdapter
-}())
+}

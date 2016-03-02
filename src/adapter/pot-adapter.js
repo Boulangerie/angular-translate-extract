@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import Po from 'pofile'
 import _ from 'lodash'
+import Adapter from './adapter'
 
 export class PotObject {
 
@@ -20,25 +21,16 @@ msgstr "${PotObject.escapeString(this.msg)}"`
 
 PotObject.escapeString = (str) => (""+str).replace(/"/g, '\\"')
 
-export class PotAdapter {
+export class PotAdapter extends Adapter {
 
   constructor(log, basePath) {
-    this.log = log
-    this.basePath = basePath
+    super(log, basePath)
 
     this.params = {
       dest: '.',
       prefix: '',
       suffix: '.pot'
     }
-  }
-
-  init(params) {
-    this.params = _.defaults(params, this.params)
-
-    try {
-      this.log.debug('Init PodAdapter', this.params.dest, this.params.prefix, this.params.suffix)
-    } catch(e) {}
   }
 
   persist(translations) {

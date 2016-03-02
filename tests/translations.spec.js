@@ -259,6 +259,20 @@ describe('Translations', () => {
         "NS.SNS2": ""
       })
     })
+
+    it('should return merged translations (safeMode: false & useDefault:null)', () => {
+      translations.setTranslations({
+        "NS.SNS1": "my translations",
+        "NS.SNS2": ""
+      })
+      let result = translations.getMergedTranslations({
+        "NS.SNS1": "my new translations"
+      })
+      expect(result).to.deep.equal({
+        "NS.SNS1": "my new translations",
+        "NS.SNS2": ""
+      })
+    })
     it('should take care about given link (@:)', () => {
       translations.setTranslations({
         "NS.SNS1": "my translations",
