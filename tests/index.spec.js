@@ -8,8 +8,6 @@ import preset from './preset.conf.js'
 import pkg from '../package.json'
 
 describe('Extractor', () => {
-	let extractor
-
 	describe('Interface', () => {
 		it('should expose the current version', () => {
 			expect(AngularTranslateExtractor.VERSION).to.be.a('string')

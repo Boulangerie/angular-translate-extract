@@ -14,6 +14,8 @@ import Log from 'log'
 import pkg from '../package.json'
 import {Utils} from './utils.js'
 import {Translations} from './translations.js'
+import {PotAdapter} from './adapter/pot-adapter.js'
+import {JsonAdapter} from './adapter/json-adapter.js'
 
 
 var extractor
@@ -334,13 +336,11 @@ var extractor
 
     switch(adapter) {
       case 'pot':
-        var PotAdapter = require('./adapter/pot-adapter.js')
-        var toPot = new PotAdapter.PotAdapter(_log, _basePath)
+        var toPot = new PotAdapter(_log, _basePath)
         toPot.init(params)
         _translation.persist(toPot)
         break
       default:
-        var JsonAdapter = require('./adapter/json-adapter.js')
         var toJson = new JsonAdapter(_log, _basePath)
         toJson.init(params)
         _translation.persist(toJson)
