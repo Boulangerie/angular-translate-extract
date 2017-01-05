@@ -149,10 +149,6 @@ var extractor
             }
           }
 
-          if (translationKey.indexOf("1/2'|translate") !== -1) {
-            _log.debug("MYN found", translationKey, regexName)
-          }
-
           // Store the translationKey with the value into results
           var defaultValueByTranslationKey = function (translationKey, translationDefaultValue) {
             if (regexName !== "JavascriptServiceArraySimpleQuote" &&
