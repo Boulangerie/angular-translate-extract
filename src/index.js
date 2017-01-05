@@ -108,9 +108,12 @@ var extractor
             case "JavascriptServiceSimpleQuote":
             case "JavascriptServiceInstantSimpleQuote":
             case "JavascriptFilterSimpleQuote":
+              translationKey = translationKey.replace(/\\\'/g, "'");
+              break;
             case "HtmlNgBindHtml":
-              translationKey = translationKey.replace(/\\\'/g, "'")
-              break
+              translationKey = translationKey.replace(/\\\'/g, "'");
+              translationKey = translationKey.replace(/&quot;/g, '"');
+              break;
             case "commentDoubleQuote":
             case "HtmlFilterDoubleQuote":
             case "JavascriptServiceDoubleQuote":
@@ -144,6 +147,10 @@ var extractor
             if (_.isFunction(customRegex[regexName])) {
               translationKey = customRegex[regexName](translationKey) || translationKey
             }
+          }
+
+          if (translationKey.indexOf("1/2'|translate") !== -1) {
+            _log.debug("MYN found", translationKey, regexName)
           }
 
           // Store the translationKey with the value into results
@@ -185,7 +192,7 @@ var extractor
       HtmlDirectivePluralLast: 'translate="((?:\\\\.|[^"\\\\])*)".*angular-plural-extract="((?:\\\\.|[^"\\\\])*)"',
       HtmlDirectivePluralFirst: 'angular-plural-extract="((?:\\\\.|[^"\\\\])*)".*translate="((?:\\\\.|[^"\\\\])*)"',
       HtmlNgBindHtml: 'ng-bind-html="\\s*\'((?:\\\\.|[^\'\\\\])*)\'\\s*\\|\\s*translate(:.*?)?\\s*"',
-      HtmlNgBindHtmlTernary: 'ng-bind-html="\\s*([^?]*?[^:]*:[^|}]*)\\s*\\|\\s*translate(:.*?)?\\s*"',
+      HtmlNgBindHtmlTernary: 'ng-bind-html="\\s*([^\\"?]*?[^\\":]*:[^\\"|}]*)\\s*\\|\\s*translate(:.*?)?\\s*"',
       JavascriptServiceSimpleQuote: '\\$translate\\(\\s*\'((?:\\\\.|[^\'\\\\])*)\'[^\\)]*\\)',
       JavascriptServiceDoubleQuote: '\\$translate\\(\\s*"((?:\\\\.|[^"\\\\])*)"[^\\)]*\\)',
       JavascriptServiceArraySimpleQuote: '\\$translate\\((?:\\s*(\\[\\s*(?:(?:\'(?:(?:\\.|[^.*\'\\\\])*)\')\\s*,*\\s*)+\\s*\\])\\s*)\\)',
