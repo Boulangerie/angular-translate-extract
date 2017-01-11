@@ -11,6 +11,7 @@
     "HtmlFilterDoubleQuote{} on same line 2/2": "HtmlFilterDoubleQuote{} on same line 2/2",
     "HtmlFilterDoubleQuote{} {{var}}on same line 1/2": "HtmlFilterDoubleQuote{} {{var}}on same line 1/2",
     "HtmlFilterSimpleQuoteOneTimeBinding": "HtmlFilterSimpleQuoteOneTimeBinding",
+    "HtmlNgBindHtml 2/2 Created with <i class=\"ion-heart\"></i>": "HtmlNgBindHtml 2/2 Created with <i class=\"ion-heart\"></i>",
     "HtmlNgBindHtml Key ' 1/1": "HtmlNgBindHtml Key ' 1/1",
     "JavascriptFilter 1/2 with var \"{name}\"": "JavascriptFilter 1/2 with var \"{name}\"",
     "JavascriptFilter 2/2 without var": "JavascriptFilter 2/2 without var",

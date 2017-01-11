@@ -77,11 +77,19 @@ msgid "HtmlFilterDoubleQuote{} on same line 2/2"
 msgstr ""
 
 msgctxt ""
+msgid "HtmlFilterSimpleQuote with {{varName}}"
+msgstr ""
+
+msgctxt ""
 msgid "HtmlFilterSimpleQuoteOneTimeBinding"
 msgstr ""
 
 msgctxt ""
-msgid "HtmlNgBindHtml Key ' 1/1"
+msgid "HtmlNgBindHtml 2/2 Created with <i class=\"ion-heart\"></i>"
+msgstr ""
+
+msgctxt ""
+msgid "HtmlNgBindHtml Key ' 1/2"
 msgstr ""
 
 msgctxt ""
