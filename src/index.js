@@ -58,6 +58,9 @@ var extractor
         keyAsText         = this.data.keyAsText || false,
         adapter           = this.data.adapter || 'json'
 
+    var escapedInterpolationStartRegex = new RegExp(_utils.escapeRegExpInterpolation(interpolation.startDelimiter), 'g'),
+        escapedInterpolationEndRegex   = new RegExp(_utils.escapeRegExpInterpolation(interpolation.endDelimiter), 'g')
+
     // Extract regex strings from content and feed results object
     var _extractTranslation = (regexName, regex, content, results) => {
       var r
@@ -104,22 +107,30 @@ var extractor
 
           switch (regexName) {
             case "commentSimpleQuote":
-            case "HtmlFilterSimpleQuote":
             case "JavascriptServiceSimpleQuote":
             case "JavascriptServiceInstantSimpleQuote":
             case "JavascriptFilterSimpleQuote":
               translationKey = translationKey.replace(/\\\'/g, "'");
+              break;
+            case "HtmlFilterSimpleQuote":
+              translationKey = translationKey.replace(/\\\'/g, "'");
+              translationKey = translationKey.replace(escapedInterpolationStartRegex, interpolation.startDelimiter);
+              translationKey = translationKey.replace(escapedInterpolationEndRegex, interpolation.endDelimiter);
               break;
             case "HtmlNgBindHtml":
               translationKey = translationKey.replace(/\\\'/g, "'");
               translationKey = translationKey.replace(/&quot;/g, '"');
               break;
             case "commentDoubleQuote":
-            case "HtmlFilterDoubleQuote":
             case "JavascriptServiceDoubleQuote":
             case "JavascriptServiceInstantDoubleQuote":
             case "JavascriptFilterDoubleQuote":
               translationKey = translationKey.replace(/\\\"/g, '"')
+              break
+            case "HtmlFilterDoubleQuote":
+              translationKey = translationKey.replace(/\\\"/g, '"')
+              translationKey = translationKey.replace(escapedInterpolationStartRegex, interpolation.startDelimiter);
+              translationKey = translationKey.replace(escapedInterpolationEndRegex, interpolation.endDelimiter);
               break
             case "JavascriptServiceArraySimpleQuote":
             case "JavascriptServiceArrayDoubleQuote":

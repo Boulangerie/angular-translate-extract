@@ -77,6 +77,10 @@ msgid "HtmlFilterDoubleQuote{} on same line 2/2"
 msgstr ""
 
 msgctxt ""
+msgid "HtmlFilterSimpleQuote with {{varName}}"
+msgstr ""
+
+msgctxt ""
 msgid "HtmlFilterSimpleQuoteOneTimeBinding"
 msgstr ""
 

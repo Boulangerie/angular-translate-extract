@@ -59,6 +59,15 @@ export class Utils {
   }
 
   /**
+   * Escape interpolation characters in the given str
+   * @param str
+   * @returns {void|string|XML}
+   */
+  escapeRegExpInterpolation(str) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\\\\\$&")
+  }
+
+  /**
    * Extract different part from a ternary operation
    * eg: myVar ? 'myFirst result' : 'mySecond result'
    * @param {String} str

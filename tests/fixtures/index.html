@@ -35,6 +35,16 @@
 <!--
   TEST CASE - Filter HTML
   Interpolation: {{ }}
+  Simple quote
+  Variables
+-->
+<header style="font-family:'Helvetica Neue'">
+  <h1 description="{{ 'HtmlFilterSimpleQuote with \{\{varName\}\}' | translate:{varName: 'Variables'} }}">Inspect 'description' attribute</h1>
+</header>
+
+<!--
+  TEST CASE - Filter HTML
+  Interpolation: {{ }}
   Double quote
   Variables
   Spaces

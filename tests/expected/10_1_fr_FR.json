@@ -10,6 +10,7 @@
     "HtmlFilterDoubleQuote{} interp\"olation {{xx}}": "",
     "HtmlFilterDoubleQuote{} on same line 2/2": "",
     "HtmlFilterDoubleQuote{} {{var}}on same line 1/2": "",
+    "HtmlFilterSimpleQuote with {{varName}}": "",
     "HtmlFilterSimpleQuoteOneTimeBinding": "",
     "HtmlNgBindHtml 2/2 Created with <i class=\"ion-heart\"></i>": "",
     "HtmlNgBindHtml Key ' 1/2": "",
