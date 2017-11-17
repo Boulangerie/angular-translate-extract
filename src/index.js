@@ -148,6 +148,13 @@ var extractor
 
           // Store the translationKey with the value into results
           var defaultValueByTranslationKey = function (translationKey, translationDefaultValue) {
+            // Interpolated translationKey
+            if (_.startsWith(translationKey, interpolation.startDelimiter) &&
+              _.endsWith(translationKey, interpolation.endDelimiter) &&
+              !(translationKey.split(interpolation.endDelimiter).length -2)) {
+              return
+            }
+
             if (regexName !== "JavascriptServiceArraySimpleQuote" &&
               regexName !== "JavascriptServiceArrayDoubleQuote") {
               if (keyAsText === true && translationDefaultValue.length === 0) {
