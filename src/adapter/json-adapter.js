@@ -74,7 +74,7 @@ export class JsonAdapter extends Adapter {
         " / Deleted: " + stats["deleted"] +
         " / New: " + stats["new"]
 
-      this.log.debug(statsString)
+      this.log.info(statsString)
 
       // Write JSON file for language
       fs.writeFileSync(path.resolve(this.basePath, destFilename), this.utils.customStringify(_translations, this.stringifyOptions) + '\n')
