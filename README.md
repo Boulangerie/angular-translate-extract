@@ -97,6 +97,7 @@ WIP!
 Options src and jsonSrc may be specified according to the grunt Configuring tasks guide.
 
 - [src](#src)
+- [htmlSrc](#htmlSrc)
 - [nullEmpty](#nullempty-v026)
 - [namespace](#namespace-v026)
 - [interpolation](#interpolation)
@@ -116,9 +117,20 @@ Options src and jsonSrc may be specified according to the grunt Configuring task
 Type: `Array`
 Default: `undefined`
 
-Example: `[ 'src/**/*.js' ]`
+Example: `[ 'src/**/*.js', 'src/**/*.html' ]`
 
 Define a file list to parse for extract translation.
+
+#### htmlSrc
+
+Type: `Array`
+Default: `undefined`
+
+Example: `[ 'src/**/*.html' ]`
+
+Define a file list to parse with [cheerio](https://github.com/cheeriojs/cheerio).
+
+There **translate** and **translate-attr** directives with nested html are supported.
 
 #### nullEmpty (v0.2.6)
 

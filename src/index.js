@@ -7,6 +7,7 @@
  *l
  */
 
+import cheerio from 'cheerio'
 import fs from 'fs'
 import path from 'path'
 import _ from 'lodash'
@@ -42,6 +43,7 @@ var extractor
     // Declare all var from configuration
     var files             = _utils.expand(this.data.src),
         dest              = _utils.getRealPath(this.data.dest || '.'),
+        htmlSrc           = _utils.expand(this.data.htmlSrc || []),
         jsonSrc           = _utils.expand(this.data.jsonSrc || []),
         jsonSrcName       = _.union(this.data.jsonSrcName || [], ['label']),
         interpolation     = this.data.interpolation || {startDelimiter: '{{', endDelimiter: '}}'},
@@ -274,6 +276,46 @@ var extractor
         }
       }
 
+    })
+
+    // Parse all files in htmlSrc with cheerio
+    htmlSrc.forEach((file) => {
+      _log.debug("Process file with cheerio: " + file)
+      let content = fs.readFileSync(file, { encoding: 'utf8' }),
+          $ = cheerio.load(content, { decodeEntities: false }),
+          $targets,
+          storeTranslationValueByKey = (k, v) => {
+            // Avoid empty keys
+            if (k === '') return
+            // Avoid interpolated keys
+            if (_.startsWith(k, interpolation.startDelimiter) &&
+              _.endsWith(k, interpolation.endDelimiter) &&
+              !(k.split(interpolation.endDelimiter).length - 2)) {
+              return
+            }
+            results[k] = (keyAsText === true) ? k : v
+          }
+
+      // Find translate directive
+      $targets = $('[translate]')
+      $targets.each((i, el) => {
+        el = $(el)
+        let translationValue = el.html().trim(),
+            translationKey = el.attr('translate').trim() || translationValue
+        storeTranslationValueByKey(translationKey, translationValue)
+      })
+
+      // Find translate-attr directive
+      $targets = $('[translate-attr]')
+      $targets.each((i, el) => {
+        el = $(el)
+        let ta = eval(`(${el.attr('translate-attr')})`)
+        _.forEach(ta, (v, k) => {
+          let translationValue = (el.attr(k) || '').trim(),
+              translationKey = v
+          storeTranslationValueByKey(translationKey, translationValue)
+        })
+      })
     })
 
     // Parse all extra files to extra
